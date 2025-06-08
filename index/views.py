@@ -6,5 +6,5 @@ from django.shortcuts import render
 
 
 def index(request):
-    responses = HttpResponse('528图书派送系统后端项目')
-    return responses
+    response = HttpResponse('528图书派送系统后端项目')
+    return response
