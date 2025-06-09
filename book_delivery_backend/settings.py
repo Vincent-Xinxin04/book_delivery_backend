@@ -84,7 +84,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'sjjjst9v',
         'HOST': 'dbconn.sealoshzh.site',
-        'PORT': 32098,
+        'PORT': 41147,
     }
 }
 
