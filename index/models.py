@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class User:
+class User(models.Model):
     UserID = models.AutoField(primary_key=True)
     Username = models.CharField(max_length=10, unique=True)
     password = models.CharField(max_length=20, unique=True)
@@ -11,7 +11,7 @@ class User:
     email = models.CharField(max_length=20, unique=True)
     create_time = models.DateTimeField(auto_now_add=True)
 
-class Book:
+class Book(models.Model):
     ISBN = models.CharField(max_length=13, primary_key=True)
     bookname = models.CharField(max_length=13, unique=True)
     book_author = models.CharField(max_length=13, unique=True)
