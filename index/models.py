@@ -31,18 +31,22 @@ class Book(models.Model):
 
 class Order(models.Model):
     Order_ID = models.CharField(max_length=32, primary_key=True)
-    UserID = models.ForeignKey('User', on_delete=models.CASCADE)
-    book_isbn = models.ForeignKey('Book', on_delete=models.CASCADE)
-    courier_ID = models.ForeignKey('User', on_delete=models.CASCADE)
+    UserID = models.ForeignKey('User', on_delete=models.CASCADE, related_name='user_orders')
+    book_ID = models.ForeignKey('Book', on_delete=models.CASCADE)
+    courier_ID = models.ForeignKey('User', on_delete=models.CASCADE, related_name='courier_orders')
     order_status = models.CharField(max_length=20,default='待处理')
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now_add=True)
 
 class User_Role(models.Model):
-    User_ID = models.ForeignKey('User', on_delete=models.CASCADE, primary_key=True)
-    Role_ID = models.ForeignKey('Role', on_delete=models.CASCADE, primary_key=True)
+    User_ID = models.ForeignKey('User', on_delete=models.CASCADE)
+    Role_ID = models.ForeignKey('Role', on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('User_ID', 'Role_ID')  # 确保组合唯一
 
 class Role_Permission(models.Model):
-    Role_ID = models.ForeignKey('Role', on_delete=models.CASCADE, primary_key=True)
-    Perm_ID = models.ForeignKey('Permission', on_delete=models.CASCADE, primary_key=True)
+    Role_ID = models.ForeignKey('Role', on_delete=models.CASCADE)
+    Perm_ID = models.ForeignKey('Permission', on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('Role_ID', 'Perm_ID')  # 确保组合唯一
 
