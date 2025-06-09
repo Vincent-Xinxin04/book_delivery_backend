@@ -13,11 +13,7 @@ class User(models.Model):
 
 class Role(models.Model):
     Role_ID = models.CharField(max_length=11, primary_key=True)
-    Role_name = (
-        ('管理员','管理员'),
-        ('派送员','派送员'),
-        ('学生','学生'),
-    )
+    Role_name = models.CharField(max_length=10, unique=True)
 
 class Permission(models.Model):
     Perm_ID = models.CharField(max_length=11, primary_key=True)
