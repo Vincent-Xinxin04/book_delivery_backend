@@ -18,6 +18,6 @@ class Book(models.Model):
     book_status = models.IntegerField(default=0) #状态0为可借、状态1为已借出、状态2为下架
     upload_time = models.DateTimeField(auto_now_add=True)
     upload_user = models.ForeignKey('User', on_delete=models.CASCADE)
-    category = models.CharField(max_length=13, unique=True)    #分为多少类
+    category = models.CharField(max_length=13, unique=True,default='NULL')    #分为多少类
 
 
