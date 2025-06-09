@@ -13,7 +13,11 @@ class User(models.Model):
 
 class Role(models.Model):
     Role_ID = models.CharField(max_length=11, primary_key=True)
-    Role_name = models.CharField(max_length=20, unique=True)
+    Role_name = (
+        ('管理员','管理员'),
+        ('派送员','派送员'),
+        ('学生','学生'),
+    )
 
 class Permission(models.Model):
     Perm_ID = models.CharField(max_length=11, primary_key=True)
@@ -24,7 +28,7 @@ class Book(models.Model):
     Book_ID = models.CharField(max_length=13, primary_key=True)
     bookname = models.CharField(max_length=13, unique=True)
     book_author = models.CharField(max_length=13, unique=True)
-    book_status = models.IntegerField(default=0) #状态0为可借、状态1为已借出、状态2为下架
+    book_status = models.IntegerField(default=0)   #状态0为可借、状态1为已借出、状态2为下架
     upload_time = models.DateTimeField(auto_now_add=True)
     upload_user = models.ForeignKey('User', on_delete=models.CASCADE)
     category = models.CharField(max_length=13, unique=True,default='NULL')    #分为多少类
