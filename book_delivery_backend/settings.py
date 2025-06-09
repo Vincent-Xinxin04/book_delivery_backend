@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'book_delivery_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
-        'NAME': 'book-delivery-sql',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'book_delivery',
         'USER': 'root',
         'PASSWORD': 'sjjjst9v',
-        'HOST': 'book-delivery-sql-mysql.ns-xa71ytrf.svc',
-        'PORT': '3306',
+        'HOST': 'dbconn.sealoshzh.site',
+        'PORT': 32098,
     }
 }
 

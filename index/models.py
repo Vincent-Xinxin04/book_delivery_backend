@@ -8,3 +8,5 @@ class User:
     password = models.CharField(max_length=10, unique=True)
     real_name = models.CharField(max_length=10, unique=True)
     phone = models.CharField(max_length=10, unique=True)
+    email = models.CharField(max_length=10, unique=True)
+    create_time = models.DateTimeField(auto_now_add=True)
