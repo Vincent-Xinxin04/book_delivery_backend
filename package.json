@@ -1,0 +1,19 @@
+{
+  "name": "book_delivery_backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": ".\\myenv\\Scripts\\activate & python manage.py runserver"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vincent-Xinxin04/book_delivery_backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vincent-Xinxin04/book_delivery_backend/issues"
+  },
+  "homepage": "https://github.com/Vincent-Xinxin04/book_delivery_backend#readme",
+  "description": ""
+}
