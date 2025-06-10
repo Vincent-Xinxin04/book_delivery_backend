@@ -24,9 +24,9 @@ urlpatterns = [
     path('index/', index_views.index),
 
     #Maybe登录注册？
-    path('index/login/',index_views.login),
+    path('login/',index_views.login),
 
-    path('index/sign/',index_views.signup),
+    path('signup/',index_views.signup),
 
     #个人信息的展示
     path('profile/',user_views.profile),
