@@ -6,8 +6,8 @@ class User(models.Model):
     UserID = models.AutoField(primary_key=True)
     Username = models.CharField(max_length=10, unique=True)
     password = models.CharField(max_length=20, unique=True)
-    real_name = models.CharField(max_length=10, unique=True)
-    phone = models.CharField(max_length=20, unique=True)
+    # real_name = models.CharField(max_length=10, unique=True)
+    student_id = models.CharField(max_length=20, unique=True)
     email = models.CharField(max_length=20, unique=True)
     create_time = models.DateTimeField(auto_now_add=True)
 
