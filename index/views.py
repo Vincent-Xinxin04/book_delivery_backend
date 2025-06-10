@@ -13,3 +13,9 @@ def index(request):
     response = HttpResponse('528图书派送系统后端项目')
     response.status_code = 200
     return response
+
+def login(request):
+    return
+
+def signup(request):
+    return
