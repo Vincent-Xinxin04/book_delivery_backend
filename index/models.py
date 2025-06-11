@@ -4,9 +4,8 @@ from django.db import models
 
 class User(models.Model):
     UserID = models.AutoField(primary_key=True)
-    Username = models.CharField(max_length=10, unique=True)
+    Username = models.CharField(max_length=10, unique=True,default='小明')
     password = models.CharField(max_length=20, unique=True)
-    # real_name = models.CharField(max_length=10, unique=True)
     student_id = models.CharField(max_length=20, unique=True)
     email = models.CharField(max_length=20, unique=True)
     create_time = models.DateTimeField(auto_now_add=True)
@@ -21,7 +20,7 @@ class Permission(models.Model):
     Perm_desc = models.CharField(max_length=100, unique=True)
 
 class Book(models.Model):
-    Book_ID = models.CharField(max_length=13, primary_key=True)
+    Book_ID = models.AutoField(primary_key=True)
     bookname = models.CharField(max_length=13, unique=True)
     book_author = models.CharField(max_length=13, unique=True)
     book_status = models.IntegerField(default=0)   #状态0为可借、状态1为已借出、状态2为下架
