@@ -1,17 +1,16 @@
 import math
 from django.utils import timezone
-from .models import Order
 
 # 计算两点 (x1,y1) 与 (x2,y2) 的距离（简单欧氏距离，仅示例，实际看坐标类型）
 def calculate_distance(x1, y1, x2, y2):  
     return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
 # 推荐算法主逻辑
-def recommend_orders(volunteer_x, volunteer_y, distance_threshold=None):  
-    all_orders = Order.objects.all()
+def recommend_orders(volunteer, all_orders, distance_threshold=None):  
+    # all_orders = Order.objects.all()
     order_distance_list = []
     for order in all_orders:
-        distance = calculate_distance(volunteer_x, volunteer_y, order.x, order.y)
+        distance = calculate_distance(volunteer.x, volunteer.y, order.x, order.y)
         # 若有距离范围约束，先过滤
         if distance_threshold is not None and distance > distance_threshold:  
             continue
