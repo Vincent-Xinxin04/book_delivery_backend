@@ -20,11 +20,17 @@ def profile(request):
     except Exception:
         return JsonResponse({'msg':'服务器错误'},status=500)
     if len(obj) == 1:
+        bookobj = Book.objects.filter(obj[0].UserID)
+        l = []
+        if bookobj.exists():
+            for book in bookobj:
+                l.append({'bookname':book.bookname,'book_status':book.book_status,'book_author':book.book_author,'upload_time':book.upload_time,'category':book.category})
         return JsonResponse({'msg':'用户信息',
-                             'username':obj[0].Username,
-                             'studentid':obj[0].student_id,
-                             'email':obj[0].email,'create_time':obj[0].create_time},
-                            status=200)
+                                'username':obj[0].Username,
+                                'studentid':obj[0].student_id,
+                                'book': l,
+                                'email':obj[0].email,'create_time':obj[0].create_time},
+                                status=200)
     else:
         return JsonResponse({'msg':'用户不唯一'},status=400)
 
