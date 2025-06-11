@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
-from index.models import User
+from index.models import *
 from algorithm import test
 from index.models import Role
 
@@ -69,6 +69,8 @@ def signup(request):
         return JsonResponse({'msg':'服务器出现错误'}, status=400)
     if len(obj) == 0:
         User.objects.create(Username= content['studentid'], password=content['password'])
+        ID = User.objects.get(student_id=content['studentid']).UserID
+        User_Role.objects.create(UserID=ID,Role_ID=2)
         return JsonResponse({'msg':'注册成功'}, status=200)
     else:
         return JsonResponse({'msg':'用户已存在'},status=400)

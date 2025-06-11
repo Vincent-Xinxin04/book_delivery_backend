@@ -4,7 +4,7 @@ from django.db import models
 
 class User(models.Model):
     UserID = models.AutoField(primary_key=True)
-    Username = models.CharField(max_length=30, unique=True,default='小明')
+    Username = models.CharField(max_length=30,default='username')
     password = models.CharField(max_length=30, unique=True)
     student_id = models.CharField(max_length=30, unique=True)
     email = models.CharField(max_length=30, unique=True)
