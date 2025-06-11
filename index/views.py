@@ -41,7 +41,8 @@ def login(request):
     except Exception:
         return JsonResponse({'msg':'服务器错误'}, status=400)
     if len(obj) == 1:
-        secert_key = os.environ.get('JWT_SECRET_KEY')
+        secert_key = 'secret_key'
+        print('secert_key:', secert_key)
         token = generate_login_token(obj[0].student_id,obj[0].Username,secert_key)
         if content['password'] == obj[0].password :
             response.content = JsonResponse({'msg':'登录成功','token':token,'studentid':obj[0].student_id,'email':obj[0].email})
