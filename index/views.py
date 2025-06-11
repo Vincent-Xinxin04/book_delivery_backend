@@ -1,4 +1,5 @@
 import json
+import os
 from http.client import responses
 
 from django.contrib.admindocs.utils import ROLES
@@ -7,8 +8,9 @@ from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
+from algorithm.crypt_jwt import generate_login_token
 from index.models import *
-from algorithm import test
+from algorithm import crypt_jwt
 from index.models import Role
 
 def index(request):
@@ -39,8 +41,10 @@ def login(request):
     except Exception:
         return JsonResponse({'msg':'服务器错误'}, status=400)
     if len(obj) == 1:
+        secert_key = os.environ.get('JWT_SECRET_KEY')
+        token = generate_login_token(obj[0].student_id,obj[0].Username,secert_key)
         if content['password'] == obj[0].password :
-            response.content = JsonResponse({'msg':'登录成功'})
+            response.content = JsonResponse({'msg':'登录成功','token':token,'studentid':obj[0].student_id,'email':obj[0].email})
             response.status_code = 200
             return response
         else :
