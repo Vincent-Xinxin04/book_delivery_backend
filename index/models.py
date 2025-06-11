@@ -27,6 +27,7 @@ class Book(models.Model):
     upload_time = models.DateTimeField(auto_now_add=True)
     upload_user = models.ForeignKey('User', on_delete=models.CASCADE)
     category = models.CharField(max_length=30, unique=True,default='NULL')    #分为多少类
+    image_url = models.URLField(max_length=200, blank=True, null=True) # 存储图片的链接
 
 class Order(models.Model):
     Order_ID = models.CharField(max_length=32, primary_key=True)
