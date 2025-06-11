@@ -46,7 +46,7 @@ def login(request):
         # print('secert_key:', secert_key)
         token = generate_login_token(obj[0].student_id,obj[0].Username,secert_key)
         if content['password'] == obj[0].password :
-            role = Role.objects.get(Role_ID=User_Role.objects.get(User_ID = obj[0].UserID).Role_ID).Role_name
+            role = Role.objects.get(Role_ID=User_Role.objects.get(User_ID = obj[0].UserID).Role_ID_id).Role_name
             response.content = JsonResponse({'role':role,'username':obj[0].Username,'msg':'登录成功','token':token,'studentid':obj[0].student_id,'email':obj[0].email})
             response.status_code = 200
             return response
