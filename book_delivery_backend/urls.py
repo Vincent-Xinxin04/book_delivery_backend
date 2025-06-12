@@ -33,7 +33,6 @@ urlpatterns = [
 
     path('user/profile/update/',user_views.update),
 
-
     #志愿者申请派单
     path('volunteer/register/',volunteer_views.register),
 

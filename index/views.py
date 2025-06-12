@@ -14,9 +14,10 @@ from algorithm import crypt_jwt
 from index.models import Role
 
 def index(request):
-    response = HttpResponse('528图书派送系统后端项目')
-    response.status_code = 200
-    return response
+    # Role.objects.create(Role_ID=1,Role_name='monitor')
+    # Role.objects.create(Role_ID=2,Role_name='common_user')
+    # Role.objects.create(Role_ID=3,Role_name='volunteer')
+    return
 
 @csrf_exempt
 @require_POST
@@ -73,9 +74,10 @@ def signup(request):
     except Exception:
         return JsonResponse({'msg':'服务器出现错误'}, status=400)
     if len(obj) == 0:
-        User.objects.create(Username= content['studentid'], password=crypt_jwt.encrypt_password(content['password']))
+        User.objects.create(Username= content['username'], password=crypt_jwt.encrypt_password(content['password']),student_id=content['studentid'],email=content['email'])
         ID = User.objects.get(student_id=content['studentid']).UserID
-        User_Role.objects.create(UserID=ID,Role_ID=2)
+        # print(ID)
+        User_Role.objects.create(User_ID_id=ID,Role_ID_id=2)
         return JsonResponse({'msg':'注册成功'}, status=200)
     else:
         return JsonResponse({'msg':'用户已存在'},status=400)

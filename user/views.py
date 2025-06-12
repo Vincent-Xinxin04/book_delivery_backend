@@ -9,18 +9,13 @@ from index.models import *
 @csrf_exempt
 @require_GET
 def profile(request):
-    if request.body is None:
-        return JsonResponse({'msg':'请求体为空'},status=400)
     try:
-        content = json.loads(request.body.decode('utf-8'))  #给个学号即可
-    except Exception:
-        return JsonResponse({'msg':'Json不合法'},status=400)
-    try:
-        obj = User.objects.filter(student_id=content['username'])
+        obj = User.objects.filter(student_id=request.GET['studentid'])
+        print(obj)
     except Exception:
         return JsonResponse({'msg':'服务器错误'},status=500)
     if len(obj) == 1:
-        bookobj = Book.objects.filter(obj[0].UserID)
+        bookobj = Book.objects.filter(upload_user = obj[0].UserID)
         l = []
         if bookobj.exists():
             for book in bookobj:
