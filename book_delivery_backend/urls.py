@@ -26,7 +26,7 @@ urlpatterns = [
     #Maybe登录注册？
     path('login/',index_views.login),
 
-    path('signup/',index_views.signup),
+    path('register/',index_views.signup),
 
     #个人信息的展示
     path('user/profile/',user_views.profile),
