@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'monitor.apps.MonitorConfig',
     'index.apps.IndexConfig',
     'volunteer.apps.VolunteerConfig',
-    'drf_yasg',
-    'api',
     'corsheaders'
 ]
 
