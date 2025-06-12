@@ -29,13 +29,13 @@ urlpatterns = [
     path('signup/',index_views.signup),
 
     #个人信息的展示
-    path('profile/',user_views.profile),
+    path('user/profile/',user_views.profile),
 
-    path('profile/update/',user_views.update),
+    path('user/profile/update/',user_views.update),
 
 
     #志愿者申请派单
-    path('volunteer/',volunteer_views.order),
+    path('volunteer/register/',volunteer_views.register),
 
 
 ]

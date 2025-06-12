@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def order(request):
     return
+
+def register(request):
+    return;
