@@ -6,6 +6,7 @@ import jwt
 from datetime import datetime, timedelta
 from typing import Tuple
 
+secert_key = 'secret_key'
 # 密码加密函数 (使用 bcrypt)
 def encrypt_password(password: str) -> Tuple[str, str]:
     """
