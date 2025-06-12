@@ -42,10 +42,8 @@ def login(request):
     except Exception:
         return JsonResponse({'msg':'服务器错误'}, status=400)
     if len(obj) == 1:
-        secert_key = 'secret_key'
-        # print('secert_key:', secert_key)
-        token = generate_login_token(obj[0].student_id,obj[0].Username,secert_key)
-        if content['password'] == obj[0].password :
+        token = generate_login_token(obj[0].student_id,obj[0].Username,crypt_jwt.secert_key)
+        if crypt_jwt.verify_password(content['password'], obj[0].password):
             role = Role.objects.get(Role_ID=User_Role.objects.get(User_ID = obj[0].UserID).Role_ID_id).Role_name
             response.content = JsonResponse({'role':role,'username':obj[0].Username,'msg':'登录成功','token':token,'studentid':obj[0].student_id,'email':obj[0].email})
             response.status_code = 200
@@ -75,7 +73,7 @@ def signup(request):
     except Exception:
         return JsonResponse({'msg':'服务器出现错误'}, status=400)
     if len(obj) == 0:
-        User.objects.create(Username= content['studentid'], password=content['password'])
+        User.objects.create(Username= content['studentid'], password=crypt_jwt.encrypt_password(content['password']))
         ID = User.objects.get(student_id=content['studentid']).UserID
         User_Role.objects.create(UserID=ID,Role_ID=2)
         return JsonResponse({'msg':'注册成功'}, status=200)
