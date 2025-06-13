@@ -86,9 +86,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'book_delivery',
         'USER': 'root',
-        'PASSWORD': 'nrpwfbh4',
-        'HOST': 'dbconn.sealoshzh.site',
-        'PORT': 44791,
+        'PASSWORD': '123456',
+        'HOST': '43.139.43.214',
+        'PORT': 3306,
     }
 }
 
