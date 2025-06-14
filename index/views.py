@@ -14,9 +14,9 @@ from algorithm import crypt_jwt
 from index.models import Role
 
 def index(request):
-    # Role.objects.create(Role_ID=1,Role_name='monitor')
-    # Role.objects.create(Role_ID=2,Role_name='common_user')
-    # Role.objects.create(Role_ID=3,Role_name='volunteer')
+    Role.objects.create(Role_ID=1,Role_name='monitor')
+    Role.objects.create(Role_ID=2,Role_name='common_user')
+    Role.objects.create(Role_ID=3,Role_name='volunteer')
     return
 
 @csrf_exempt
@@ -45,8 +45,18 @@ def login(request):
     if len(obj) == 1:
         token = generate_login_token(obj[0].student_id,obj[0].Username,crypt_jwt.secert_key)
         if crypt_jwt.verify_password(content['password'], obj[0].password):
-            role = Role.objects.get(Role_ID=User_Role.objects.get(User_ID = obj[0].UserID).Role_ID_id).Role_name
-            response.content = JsonResponse({'role':role,'username':obj[0].Username,'msg':'登录成功','token':token,'studentid':obj[0].student_id,'email':obj[0].email})
+            role = Role.objects.get(Role_ID=User_Role.objects.get(User_ID = obj[0].UserID).Role_ID_id).Role_ID
+            response.content = JsonResponse({
+                'role':role,
+                'userdata': {
+                    'userid': obj[0].UserID,
+                    'username': obj[0].Username,
+                    'studentid': obj[0].student_id,
+                    'email': obj[0].email
+                },
+                'token':token,
+                'msg':'登录成功',
+                })
             response.status_code = 200
             return response
         else :
@@ -54,8 +64,8 @@ def login(request):
             response.content = JsonResponse({'msg': '密码错误'})
             return response
     else:
+        response.status_code = 400
         response.content = JsonResponse({'msg': '用户不存在'})
-        response.status_code = 200
         return response
 
 @csrf_exempt
@@ -65,6 +75,7 @@ def signup(request):
         return JsonResponse({'msg': '请求为空'}, status=400)
     try:
         content = json.loads(request.body.decode('utf-8'))
+        print(content)
     except Exception:
         return JsonResponse({'msg': '请求体不是合法Json'}, status=500)
     if content['studentid'] is None : return JsonResponse({'msg':'学号为空'}, status=400)

@@ -17,7 +17,7 @@ def encrypt_password(password: str) -> Tuple[str, str]:
     # 生成随机的 salt (bcrypt 会自动处理 salt 存储)
     salt = bcrypt.gensalt(rounds=12)  # 适当增加计算成本
     hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-    return hashed.decode('utf-8'), salt.decode('utf-8')
+    return hashed.decode('utf-8')
 
 # 密码验证函数
 def verify_password(plain_password: str, hashed_password: str) -> bool:
